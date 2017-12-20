@@ -111,6 +111,43 @@ class App_Controller_File extends Fz_Controller {
         return html ('file/preview.php');
     }
 
+	/**
+	 *      * Delete a password from file
+	 *           */
+	public function confirmUnpassAction () {
+		flash('back_to', flash_now('back_to'));
+		$this->secure ();
+		$file = $this->getFile ();
+		$user = $this->getUser ();
+		if (! $user->is_admin) $this->checkOwner ($file, $user);
+		set ('file', $file);
+
+		return html ('file/confirmUnpass.php');
+	}
+	/**
+	 *      * Delete a password from file
+	 *           */
+	public function unpassAction () {
+		$this->secure ();
+		$file = $this->getFile ();
+		$user = $this->getUser ();
+		if (! $user->is_admin) $this->checkOwner ($file, $user);
+		$file->delPassword ();
+		$file->save ();
+		fz_log ($user.' deleting password '.$file->getFileName ());
+
+		$result ['status']     = 'success';
+		$result ['statusText'] = __('Password deleted.');
+		$result ['html']       = partial ('main/_file_row.php', array ('file' => $file));
+
+		if ($this->isXhrRequest())
+			return json (array ('status' => 'success'));
+		else {
+			flash ('notification', __('Password deleted.'));
+			redirect_to ( flash_now('back_to') );
+		}
+	}
+
 
     /**
      * Delete a file
@@ -185,12 +222,14 @@ class App_Controller_File extends Fz_Controller {
         $mail = $this->createMail();
         $subject = __r('[FileZ] "%sender%" wants to share a file with you', array (
             'sender' => $user));
-        $msg = __r('email_share_file (%file_name%, %file_url%, %sender%, %msg%)', array(
+/*        $msg = __r('email_share_file (%file_name%, %file_url%, %sender%, %msg%)', array(
             'file_name' => $file->file_name,
             'file_url'  => $file->getDownloadUrl(),
             'msg'       => $_POST ['msg'],
             'sender'    => $user,
-        ));
+        ));*/
+        $msg = $_POST ['msg']."\n\n".__('You can download the file I uploaded here').' : '.$file->getDownloadUrl ();
+
         $mail->setBodyText ($msg);
         $mail->setSubject  ($subject);
         $mail->setReplyTo  ($user->email, $user);
@@ -212,7 +251,7 @@ class App_Controller_File extends Fz_Controller {
                 return $this->returnError ($msg, 'file/email.php');
             }
         }
-
+		fz_log ($user->firstname.' '.$user->lastname.' send mail to '.$to.' for file "'.$file->file_name.'"' );
         try {
             $mail->send ();
             return $this->returnSuccessOrRedirect ('/');
@@ -319,45 +358,50 @@ class App_Controller_File extends Fz_Controller {
         if (! $file->notify_uploader)
             return;
 
-            // find user IP
-            // TODO: extract this function to generic place
-            $ipaddress = '';
-            if ($_SERVER['HTTP_CLIENT_IP'])
-                $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-            else if($_SERVER['HTTP_X_FORWARDED_FOR'])
-                $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-            else if($_SERVER['HTTP_X_FORWARDED'])
-                $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-            else if($_SERVER['HTTP_FORWARDED_FOR'])
-                $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-            else if($_SERVER['HTTP_FORWARDED'])
-                $ipaddress = $_SERVER['HTTP_FORWARDED'];
-            else if($_SERVER['REMOTE_ADDR'])
-                $ipaddress = $_SERVER['REMOTE_ADDR'];
-            else
-                $ipaddress = 'UNKNOWN';
+		// find user IP
+		// TODO: extract this function to generic place
+		$ipaddress = '';
+		if ($_SERVER['HTTP_CLIENT_IP'])
+			$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+		else if($_SERVER['HTTP_X_FORWARDED_FOR'])
+			$ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		else if($_SERVER['HTTP_X_FORWARDED'])
+			$ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+		else if($_SERVER['HTTP_FORWARDED_FOR'])
+			$ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+		else if($_SERVER['HTTP_FORWARDED'])
+			$ipaddress = $_SERVER['HTTP_FORWARDED'];
+		else if($_SERVER['REMOTE_ADDR'])
+			$ipaddress = $_SERVER['REMOTE_ADDR'];
+		else
+			$ipaddress = 'UNKNOWN';
+		$domaineIP = '';
+		if ($ipaddress != 'UNKNOWN')
+			$domaineIP = trim(shell_exec('host -s '.$ipaddress));
+		if (strpos($domaineIP,'not found:') === false)
+			$ipaddress = $ipaddress.' ('.$domaineIP.')';
 
+		// Send confirmation mail
+		$user = Fz_Db::getTable('User')->findById ($file->created_by); // I don't get why $user = $this->getUser (); doesn't work ???
 
-            // Send confirmation mail
-            $user = Fz_Db::getTable('User')->findById ($file->created_by); // I don't get why $user = $this->getUser (); doesn't work ???
+		$mail = $this->createMail();
+		$mail->addTo($user->email);
+		$mail->addTo ($user->email, $user->firstname.' '.$user->lastname);
+		$subject = __r('[FileZ] "%file_name%" downloaded', array (
+			'file_name' => $file->file_name));
+			$msg = __r('email_file_downloaded (%file_name%, %file_url%, %sender%, %ip%)', array(
+			'file_name' => $file->file_name,
+			'file_url'  => $file->getDownloadUrl(),
+			'sender'    => $user,
+			'ip'        => $ipaddress,
+		));
 
-            $mail = $this->createMail();
-            $mail->addTo($user->email);
-            $mail->addTo ($user->email, $user->firstname.' '.$user->lastname);
-            $subject = __r('[FileZ] "%file_name%" downloaded', array (
-                'file_name' => $file->file_name));
-                $msg = __r('email_file_downloaded (%file_name%, %file_url%, %sender%, %ip%)', array(
-                'file_name' => $file->file_name,
-                'file_url'  => $file->getDownloadUrl(),
-                'sender'    => $user,
-                'ip'        => $ipaddress,
-            ));
-
-            $mail->setBodyText ($msg);
-            $mail->setSubject  ($subject);
-            $mail->setReplyTo  ($user->email, $user);
-            $mail->clearFrom();
-            $mail->setFrom(fz_config_get('email', 'from_email'), fz_config_get('email', 'from_name'));   
+		$mail->setBodyText ($msg);
+		$mail->setSubject  ($subject);
+		$mail->setReplyTo  ($user->email, $user);
+		$mail->clearFrom();
+		$mail->setFrom(fz_config_get('email', 'from_email'), fz_config_get('email', 'from_name'));   
+        fz_log ('Sending email to '.$user->firstname.' '.$user->lastname.' : File "'.$file->file_name.'" Downloaded by '.$ipaddress);
         try {
             $mail->send ();
         }

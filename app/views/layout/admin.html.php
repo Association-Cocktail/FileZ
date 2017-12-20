@@ -38,6 +38,7 @@
           <li><a href="<?php echo url_for ('admin/users') ?>"><?php echo __('Users') ?></a></li>
           <li><a href="<?php echo url_for ('admin/files') ?>"><?php echo __('Files') ?></a></li>
           <li><a href="<?php echo url_for ('admin/config') ?>"><?php echo __('Settings') ?></a></li>
+          <li><a href="<?php echo url_for ('admin/logs') ?>"><?php echo __('Logs') ?></a></li>
         </ul>
       </nav>
       <article>

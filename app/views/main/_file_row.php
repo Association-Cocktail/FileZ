@@ -37,6 +37,13 @@
                                                 'x' => (int) $file->download_count
       )))); // TODO ugly DIY plural ... ?>
   </p>
+  <?php if ($file->isPassword ()): ?>
+    <p>
+      <a href="<?php echo $file->getDownloadUrl () ?>/unpass" title="<?php echo __('Delete').' '.__('Password') ?>">
+      <?php echo __('Password') ?>
+      </a>
+    </p>
+  <?php endif ?>
   <p class="delete">
     <a href="<?php echo $file->getDownloadUrl () ?>/delete" class="delete" title="<?php echo __('Delete') ?>">
       <?php echo __('Delete') ?>

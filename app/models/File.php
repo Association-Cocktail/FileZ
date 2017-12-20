@@ -270,6 +270,28 @@ class App_Model_File extends Fz_Db_Table_Row_Abstract {
     }
 
     /**
+     * Verify if password is set on the file. This function use the filename to salt
+     * the password hash meaning that 'file_name' must have been already set
+     * before setting the password.
+     *
+     * @return boolean		true if password is set, false else
+     */
+    public function isPassword () {
+        return ( !is_null( $this->password ));
+    }
+
+    /**
+     * Delete the password for the file. This function use the filename to salt
+     * the password hash meaning that 'file_name' must have been already set
+     * before setting the password.
+     *
+     * @return void
+     */
+    public function delPassword () {
+        $this->password = null;
+    }
+
+    /**
      * Set the password for the file. This function use the filename to salt
      * the password hash meaning that 'file_name' must have been already set
      * before setting the password.

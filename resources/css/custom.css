@@ -2,4 +2,16 @@
 /**
  * Put custom css rules here
  */
- 
+html {
+/*    background: url("/resources/images/Middle_texture.jpg") repeat scroll 0 0 transparent;
+    background-repeat: repeat-x;
+	background-attachment: fixed;*/
+    background: url("/resources/images/Font-Cocktail-2.png") no-repeat fixed top right,
+	#f3f3f3 url("/resources/images/Font-Cocktail-0.png") no-repeat fixed bottom center;
+}
+body {
+    /*background-image: url("/resources/images/page_gl.png");*/
+} 
+header, article, footer {
+    max-width: 100%;
+}

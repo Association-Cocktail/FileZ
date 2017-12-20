@@ -15,6 +15,7 @@
     <th><?php echo __('Availability') ?></th>
     <th><?php echo __('Size') ?></th>
     <th><?php echo __('DL count') ?></th>
+    <th><?php echo __('Password') ?></th>
     <th><?php echo __('Actions') ?></th>
   </tr>
 </thead>
@@ -31,6 +32,14 @@
     </td>
     <td><?php echo h($file->getReadableFileSize ()) ?></td>
     <td><?php echo (int) $file->download_count ?></td>
+    <td><?php if ($file->isPassword ()): ?>
+      <a href="<?php echo $file->getDownloadUrl () ?>/unpass" title="<?php echo __('Delete').' '.__('Password') ?>">
+      <?php echo __('yes') ?>
+      </a>
+    <?php else: ?>
+      <?php echo __('no') ?>
+    <?php endif ?>
+    </td>
     <td><a href="<?php echo $file->getDownloadUrl () . '/delete' ?>"><?php echo __('Delete') ?></a></td>
   </tr>
 <?php endforeach ?>

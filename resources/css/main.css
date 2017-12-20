@@ -645,6 +645,7 @@ div.lim-debug hr {display: none;}
   border-left: 1px solid #D4D0C9;
 }
 #support a.bug ,
+#support a.terms ,
 #support a.help {
   padding-left: 2.7em;
   background-position: 0.8em center;
@@ -654,6 +655,7 @@ div.lim-debug hr {display: none;}
 }
 #support a.bug  {background-image: url(../images/icons/bug.png); }
 #support a.help {background-image: url(../images/icons/help.png);}
+#support a.terms {background-image: url(../images/icons/terms.png);}
 
 /*
  * Modal

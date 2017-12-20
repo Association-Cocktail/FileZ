@@ -185,9 +185,9 @@ class App_Controller_Upload extends Fz_Controller {
         $file->setAvailableFrom ($availableFrom);
         $file->setAvailableUntil($availableUntil);
         $file->notify_uploader  = isset ($post['email-notifications']);
-        if (! empty ($post ['password']))
-            $file->setPassword  ($post ['password']);
-
+        if ((! empty ($post ['password'])) && (isset ($post['use-password']))) {
+			$file->setPassword  ($post ['password']);
+		}
         try {
             $file->save ();
 

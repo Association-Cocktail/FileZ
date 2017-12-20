@@ -10,6 +10,7 @@
     <th><?php echo __('Availability') ?></th>
     <th><?php echo __('Size') ?></th>
     <th><?php echo __('DL count') ?></th>
+    <th><?php echo __('Password') ?></th>
     <th><?php echo __('Actions') ?></th>
   </tr>
 </thead>
@@ -30,10 +31,33 @@
       'to' =>  '<b>'.$file->getAvailableUntil ()->toString ('d MMMM').'</b>')) // FIXME I18N ?>
     </td>
     <td><?php echo $file->getReadableFileSize () ?></td>
-    <td><?php echo (int) $file->download_count ?></td>
+	<td><?php echo (int) $file->download_count ?></td>
+    <td><?php if ($file->isPassword ()): ?>
+      <a href="<?php echo $file->getDownloadUrl () ?>/unpass" title="<?php echo __('Delete').' '.__('Password') ?>">
+      <?php echo __('yes') ?>
+      </a>
+    <?php else: ?>
+      <?php echo __('no') ?>
+    <?php endif ?>
+    </td>
     <td><a href="<?php echo $file->getDownloadUrl () . '/delete' ?>"><?php echo __('Delete') ?></a></td>
 <?php endforeach ?>
 </tbody>
 </table>
 
-<div id="pager"></div>
+<div id="pager" class="pager">
+    <form>
+        <img src="<?php echo public_url_for ('resources/jquery.tablesorter/addons/pager/icons/first.png'); ?>" class="first"/>
+        <img src="<?php echo public_url_for ('resources/jquery.tablesorter/addons/pager/icons/prev.png'); ?>" class="prev"/>
+        <input type="text" class="pagedisplay"/>
+        <img src="<?php echo public_url_for ('resources/jquery.tablesorter/addons/pager/icons/next.png'); ?>" class="next"/>
+        <img src="<?php echo public_url_for ('resources/jquery.tablesorter/addons/pager/icons/last.png'); ?>" class="last"/>
+        <select class="pagesize">
+            <option selected="selected"  value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option  value="40">40</option>
+        </select>
+    </form>
+</div>
+

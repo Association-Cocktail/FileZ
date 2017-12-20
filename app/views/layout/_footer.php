@@ -18,6 +18,9 @@
         <?php if (fz_config_get('looknfeel', 'help_url')): ?>
           <a href="<?php echo url_for (fz_config_get('looknfeel', 'help_url')) ?>" class="help" target="#_blank"><?php echo __('Find help') ?></a>
         <?php endif; ?>
+        <?php if (fz_config_get('looknfeel', 'terms_url')): ?>
+          <a href="<?php echo url_for (fz_config_get('looknfeel', 'terms_url')) ?>" class="terms" target="#_blank"><?php echo __('Terms use') ?></a>
+        <?php endif; ?>
         <?php if (fz_config_get('looknfeel', 'bug_report_href')): ?>
           <a href="<?php echo fz_config_get('looknfeel', 'bug_report_href') ?>" class="bug"><?php echo __('Report a bug') ?></a>
         <?php endif; ?>

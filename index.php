@@ -187,6 +187,7 @@ fz_dispatch_post ('/admin/users/:id/edit'       ,'User'        ,'update');
 // Backend::Files
 fz_dispatch_get  ('/admin/files'                ,'Admin'       ,'files');
 fz_dispatch_get  ('/admin/config'               ,'Admin'       ,'config');
+fz_dispatch_get  ('/admin/logs'                 ,'Admin'       ,'logs');
 
 // Backend::CRON
 fz_dispatch_get  ('/admin/checkFiles'           ,'Admin'       ,'checkFiles');
@@ -202,6 +203,9 @@ fz_dispatch_get  ('/download.php'               ,'File'        ,'downloadFzOne')
 // User documentation
 fz_dispatch_get  ('/help'                       ,'Help'        ,'index');
 fz_dispatch_get  ('/help/:page'                 ,'Help'        ,'showPage');
+fz_dispatch_get  ('/terms'                      ,'Help'        ,'terms');
+fz_dispatch_get  ('/report'                     ,'Help'        ,'emailForm');
+fz_dispatch_post ('/report'                     ,'Help'        ,'email');
 
 // Download controller
 fz_dispatch_get  ('/:file_hash'                 ,'File'        ,'preview');
@@ -216,6 +220,9 @@ fz_dispatch_get  ('/:file_hash/share'           ,'File'        ,'share');
 
 fz_dispatch_get  ('/:file_hash/delete'          ,'File'        ,'confirmDelete');
 fz_dispatch_post ('/:file_hash/delete'          ,'File'        ,'delete');
+
+fz_dispatch_get  ('/:file_hash/unpass'          ,'File'        ,'confirmUnpass');
+fz_dispatch_post ('/:file_hash/unpass'          ,'File'        ,'unpass');
 
 fz_dispatch_get  ('/:file_hash/extend'          ,'File'        ,'extend');
 

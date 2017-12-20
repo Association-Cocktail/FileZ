@@ -1,0 +1,63 @@
+# CONDITIONS D'UTILISATION DU SERVICE « TRANSFERT »
+
+Version 1.1 – applicable au 13.12.2017
+
+## Introduction
+
+Ce présent document définit les règles d'usage qui s'imposent à tout utilisateur du service de distribution de fichiers volumineux mis en œuvre par l'Association Cocktail et dénommé ci-dessous « TRANSFERT ».
+
+L'utilisateur est toute personne qui dépose, consulte ou télécharge un document numérique sur ou depuis la plateforme qui héberge le service.
+
+Ce texte a pour objet de préciser la responsabilité des utilisateurs et de l'association, en accord avec la législation afin de garantir un usage correcte des ressources et des services associés.
+
+Ce texte précise les conditions et les limites des éventuels contrôles portant sur l'utilisation du service par les utilisateurs.
+
+Les utilisateurs sont invités à prendre connaissance régulièrement des conditions d'utilisation qui sont susceptibles d'évoluer sans préavis.
+
+## Description du service
+
+Le service permet à un utilisateur identifié sur la plate-forme d'y déposer des fichiers numériques puis de les mettre à disposition de ces correspondants via un lien de téléchargement.
+
+Le correspondant n'a pas besoin de s'identifier formellement pour déclencher le téléchargement. Toutefois, le fichier numérique peut être protégé par un mot de passe à l'initiative du déposant.
+
+Le déposant veillera à utiliser un mot de passe robuste . Le mot de passe sera transmis au correspondant par un moyen différent que celui utilisé pour communiquer le lien de téléchargement.
+
+Pour des raisons de performance, la taille unitaire des fichiers est limitée à 2Go. Le service est également limité à la taille maximale allouée au stockage simultanée, soit 5Go. De même, la durée de mise à disposition des fichiers est limitée dans le temps. Par défaut, elle est de 5 jours et ne peut excéder 15 jours.
+
+## Condition d'utilisation
+
+L'usage de ce service ne peut se faire que dans le cadre professionnel.
+
+Le déposant est responsable des documents mis à disposition et des droits qu'il donne ainsi à ces correspondants. Il doit préalablement à la mise en ligne s'assurer qu'il en a l'autorisation.
+
+Les codes d'identification attribués à un déposant sont strictement personnels et confidentiels. Il ne doit pas les divulguer à autrui. Il ne doit pas utiliser ou tenter d'utiliser des codes d'identification autres que le sien ou de masquer sa véritable identité.
+
+L'utilisateur doit signaler toute tentative de violation de son compte et, de façon générale, toute anomalie qu'il peut constater via le lien de contact mis à disposition sur la page d'accueil du service.
+
+L'utilisateur s'engage à utiliser le service conformément aux lois et règlements, à l'ordre public et aux bonnes mœurs, au respect de l'image de l'Association Cocktail.
+
+Par conséquent, l'utilisateur s'engage à ne pas utiliser ou communiquer de fichiers, données ou informations revêtant un caractère illicite et notamment :
+
+* favorisant l'apologie des crimes contre l'humanité, l'incitation à la haine raciale, la pornographie enfantine, l'incitation à la violence et notamment l'incitation aux violences faite aux femmes, ainsi que les atteintes à la dignité humaine,
+* ne respectant pas les droits de tiers tels que, notamment, le droit au respect de la vie privée, le droit à la propriété intellectuelle ;
+* ne respectant pas les dispositions de la loi Informatique et Liberté du 6 janvier 1978 et/ou les prescriptions de la Commission Nationale Informatique et Libertés.
+
+L'utilisateur s'engage à ne pas apporter volontairement des perturbations au bon fonctionnement du service, notamment par l'introduction de logiciels parasites connus sous le nom générique de virus, chevaux de Troie, bombes logiques, logiciels d'écoute réseau ...
+
+## Sanctions
+
+Tout usage détourné ou mauvaise utilisation du service est susceptible d'être sanctionné.
+
+En cas de non-respect des dispositions des présentes conditions d'utilisation et pour préserver le bon fonctionnement du service, l'utilisateur peut se voir appliquer les sanctions suivantes :
+
+* suspension, restriction ou suppression de l'accès au service ;
+* isolement, neutralisation ou effacement de toute donnée ou fichier manifestement en contradiction avec les conditions d'utilisation ou qui mettrait en péril la sécurité du système d'information.
+
+L'utilisateur pourra être passible de poursuites civiles ou pénales sans préjuger d'éventuelles sanctions disciplinaires proportionnelles aux manquements constatés.
+
+En cas de manquement grave, l'Association Cocktail pourra saisir l'autorité judiciaire et lui mettre à disposition les éléments de trace en sa possession afin de procéder à l'identification de l'utilisateur.
+
+## Garantie du service
+
+L'Association Cocktail n'est en aucun cas responsable des contenus diffusés par le biais du service. L'Association Cocktail ne garantit pas la qualité ou la continuité du service. Le service ne peut être considéré comme un espace de stockage ou de sauvegarde pérenne. Pour des raisons de maintenance ou de panne, le service peut être inaccessible ou interrompu. Dans ces cas, l'Association Cocktail mettra en œuvre les moyens pour réduire la perte de disponibilité du service, mais ne garantit pas de temps de reprise et ne peut être tenue responsable des éventuelles pertes de données.
+

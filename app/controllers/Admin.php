@@ -44,9 +44,21 @@ class App_Controller_Admin extends Fz_Controller {
      */
     public function configAction () {
         $this->secure ('admin');
-	set ('config', option('fz_config')); # same as:  set ('config', fz_config_get());
+		set ('config', option('fz_config')); # same as:  set ('config', fz_config_get());
         return html ('admin/config.php');
         //TODO: edit and save settings
+    }
+
+    /**
+     * Action called to manage the logs
+     * Show the logs entries.
+     */
+    public function logsAction () {
+        $this->secure ('admin');
+		$path = fz_config_get('app', 'log_dir').'/filez.log';
+		set ('logs', file($path));
+		set ('file', $path);
+        return html ('admin/logs.php');
     }
 
     /**
@@ -105,4 +117,5 @@ class App_Controller_Admin extends Fz_Controller {
                 .' file_id:'.$file->id, FZ_LOG_CRON_ERROR);
         }
     }
+
 }
